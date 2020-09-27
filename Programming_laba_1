@@ -18,7 +18,8 @@ public class Laba1{
                                 if(d[i] == 12){
                                         arr[i][j] = atan(pow(E, pow(-pow(cos(x), 2), 1.0 / 3)));
                                 }else{
-                                        if((d[i] == 2) || (d[i] == 4) || (d[i] == 5) || (d[i] == 7) || (d[i] == 8) || (d[i] == 11) || (d[i] == 14) || (d[i] == 16)){
+                                        if((d[i] == 2) || (d[i] == 4) || (d[i] == 5) || (d[i] == 7) ||
+                                        (d[i] == 8) || (d[i] == 11) || (d[i] == 14) || (d[i] == 16)){
                                                 arr[i][j] = pow(E, pow(E, pow(x, 1.0 / 3)));
                                         }else{
                                                 arr[i][j] = pow(2*sin(0.25/pow(x, 2)), 2);
