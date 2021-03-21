@@ -1,0 +1,136 @@
+documentclass{beamer}
+
+usepackage[utf8]{inputenc}
+usepackage[russian]{babel}
+usepackage{xcolor,colortbl}
+usepackage[black, white, blue, red, magenta]{color}
+newcommand{specialcell}[2][c]{% 
+begin{tabular}[#1]{@{}c@{}}#2end{tabular}}
+
+title{Презентация.Лабраторная работа №7 }
+author{Сенина Мария P3112}
+institute{ITMO University}
+date{2020}
+logo{includegraphics[height=1.5cm]{itmo.jpg}}
+
+begin{document}
+
+frame{titlepage}
+
+begin{frame}
+frametitle{Проблемы округления чисел}
+Классическое правило округления - к ближайшему целому.
+medbreak
+
+begin{minipage}{.49textwidth}
+  centering
+    begin{tabular}{ccc}
+    hline
+    & Число & Округл.  hline
+     & 1,1 & 1,0  hline
+     & 2,9 & 3,0  hline
+     & 5,0 & 5,0  hline
+     & 3,4 & 3,0  hline
+     & 8,6 & 9,0  hline
+    Сумма & $textbf{21,0}$ & $textbf{21,0}$  hline
+    end{tabular}
+end{minipage}
+begin{minipage}{.49textwidth}
+  centering
+      begin{tabular}{ccc}
+    hline
+    & Число & Округл.  hline
+     & 1,5 & 2,0  hline
+     & 2,5 & 3,0  hline
+     & 5,5 & 6,0  hline
+     & 3,5 & 4,0  hline
+     & 8,5 & 9,0  hline
+    Сумма & $textbf{21,5}$ & $textbf{24,0}$  hline
+    end{tabular}
+end{minipage}
+end{frame}
+
+begin{frame}{Пример накопленной ошибки округления}
+begin{minipage}{.49textwidth}
+  centering
+  definecolor{Black}{rgb}{1,1,1}
+  begin{tabular}{cc}
+        hline
+    cellcolor{black} textcolor{white}{Число} & cellcolor{black} textcolor{white}{Округл.}  hline
+    rowcolor{Black}
+    0,33 & 0  hline
+    2,5 & 1  hline
+    5,5 & 1  hline
+    3,5 & 0  hline
+    ... & ...  hline
+    textcolor{blue}{0,50} & textcolor{blue}{1}  hline
+    0,73 & 1  hline
+    0.20 & 0  hline
+    $textbf{Сумма1}$ & $textbf{Сумма2}$  hline
+end{tabular}
+end{minipage} 
+begin{minipage}{.49textwidth}
+  centering
+В первом столбце из 100 возможных значений только одно приводит к накоплению ошибки в 50 коп., поэтому в среднем (Сумма2 – Сумма1)
+ = $(frac{10000}{100}) cdot 50$коп. = 50 руб. переплаты!
+ end{minipage}
+end{frame}
+
+begin{frame}{Проблемы округления чисел в различных СС}
+    В системах счисления с textcolor{blue}{чётным} основанием накапливается ошибка округления
+    begin{tabular}{c c c}
+        underline{Основание 10} & $textbf{1, 2, 3, 4,}$ & ← округление в меньшую сторону 
+         & $textbf{5, 6, 7, 8, 9,}$ &  ← округление в бóльшую сторону 
+         & $textbf{0}$ & ← нет ошибки округления
+    end{tabular}
+    
+medbreak
+В системах счисления с textcolor{blue}{нечётным} основанием этой проблемы нет
+begin{tabular}{c c c}
+        underline{Основание 7} & $textbf{1, 2, 3,}$ & ← округление в меньшую сторону 
+         & $textbf{4, 5, 6,}$ &  ← округление в бóльшую сторону 
+         & $textbf{0}$ & ← нет ошибки округления
+    end{tabular}
+    
+medbreak
+
+textit{Актуальна ли проблема накопления ошибки округления для симметричных СС}
+end{frame}
+
+begin{frame}{Решение проблемы с округлением
+в СС с чётным основанием}
+small
+Суть решения — использовать неклассические правила округления
+begin{itemize}
+    item textcolor{blue}{Случайное округление} используется датчик случайных чисел при принятии решения о том, в бóльшую или меньшую сторону следует округлять. 
+    item textcolor{blue}{Банковское округление} (к ближайшему чётному) $3,5 approx 4$, но $2,5 approx 2$.
+    item textcolor{blue}{К ближайшему нечётному} $3,5 approx 3$, но $2,5 approx 3$. Аналогично $4,3_{(6)} approx 5_{(6)}$.
+    item textcolor{blue}{Чередующееся} направление округления меняется на противоположное при
+каждой операции округления (необходимо «помнить» о предыдущем округлении).
+end{itemize}
+
+medbreak
+$textbf{Примечание.}$ Каждое из правил можно применять как полностью универсально, так и комбинировано с классическим правилом округления, дополняя его лишь при округлении пограничных значений.
+end{frame}
+
+begin{frame}{Пример округления}
+
+begin{tabular}{p{1.5cm}p{1.15cm}{1.15cm}p{1.15cm}p{1.15cm}p{1.15cm}}
+hline
+rowcolor[Black]{.9}textcolor{white}{Number, NS(2)} & textcolor{white}{Math} & textcolor{white}{To odd} & textcolor{white}{To even} & textcolor{white}{Random Cion test} & textcolor{white}{Striped}  hline
+rowcolor[gray]{.9} 10,1 & 11 & 11 & 10 & 11 & 10  hline
+00,1 & 01 & 01 & 00 & 01 & 01  hline
+rowcolor[gray]{.9}01,1 & 01 & 01 & 01 & 01 & 01  hline
+10,0 & 10 & 10 & 10 & 10 & 10  hline
+rowcolor[gray]{.9}11,0 & 11 & 11 & 11 & 11 & 11  hline
+00,1 & 01 & 01 & 00 & 00 & 00  hline
+rowcolor[gray]{.9}01,1 & 10 & 01 & 10 & 01 & 10  hline
+00,0 & 00 & 00 & 00 & 00 & 00  hline
+rowcolor[Black]{.9}textcolor{white}{Sum} & & & & &  hline
+rowcolor[gray]{.9}1011 & 1101 & 1100 & 1010 & 1011 & 1011  hline
+end{tabular}
+    
+end{frame}
+
+
+end{document}
