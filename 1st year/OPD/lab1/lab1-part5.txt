@@ -1,0 +1,23 @@
+cd lab0
+chmod u+rwx mantine2
+rm mantine2
+
+chmod u+rwx pichu9
+chmod u+rwx pichu9/kingdra
+rm pichu9/kingdra
+
+rm pichu9/vigorothweepinbell
+
+chmod u+rwx lickitungweepinbell
+lillipup1/lickitungweepinbell
+
+
+chmod u+rwx pichu9
+chmod u+w pichu9/weedle
+chmod u+w pichu9/bibarel
+chmod u+w pichu9/ducklett
+chmod u+w pichu9/kingdra
+chmod u+w pichu9/vigoroth
+chmod u+w pichu9/clamperl
+
+rm -r pichu9

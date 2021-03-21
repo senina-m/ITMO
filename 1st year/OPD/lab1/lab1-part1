@@ -1,0 +1,53 @@
+mkdir lab0
+cd lab0
+
+mkdir -p crawdaunt3/shedinja
+cd crawdaunt3
+mkdir deino
+touch blaziken
+
+echo "Способности Focus Energy Ember Double Kick Peck Sand-Attack
+Bulk Up Quick Attack Blaze Kick Slash Brave Sky Uppercut Flare
+Blitz" >> blaziken
+
+cat <<EOF > murkrow
+Способности Dark Art Mach Speed Insomia Super
+Luck
+EOF
+
+cat <<EOF >> buneary 
+Возможности Overland=6 Surface=4 Jump=5 Power=1
+Inetlligence=2
+EOF
+
+cd ..
+mkdir lillipup1 pichu9
+cd lillipup1
+mkdir metang donphan makuhita roserade
+
+touch porygon2 lickitung
+cat <<EOF >porygon2
+Развитые способности
+Analytic
+EOF
+
+cat <<EOF > lickitung
+Способности Lick Supersonic Defense Curl Knock
+Off  Warp Storm Disble Slam Rollout Chip Away Me First Refresh Screech
+Power Wring Out
+EOF
+
+cd ..
+cd pichu9
+mkdir weedle ducklett clamperl
+echo "satk=6
+sdef=6 spd=7" > bibarel
+echo "satk=10 sdef=10 spd=9" > kingdra
+echo "satk=6 sedf=6
+spd=9" > vigoroth
+
+cd ..
+echo "satk=8 sdef=14 spd=7" > mantine2
+echo "Живет Cave Taige Tundra" >> vanillite8
+echo "Способности 
+Overgrow Venom Chlorophyll Oblibious" > weepinbell6

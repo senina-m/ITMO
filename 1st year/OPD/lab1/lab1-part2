@@ -1,0 +1,41 @@
+cd lab0
+cd crawdaunt3
+
+chmod u=r blaziken
+chmod go-rwx blaziken
+
+chmod a=wx shedinja
+
+chmod 404 murkrow
+chmod 400 buneary
+chmod 551 deino
+
+cd ..
+chmod u=rx crawdaunt3
+chmod g=x crawdaunt3
+chmod o=w crawdaunt3
+
+cd lillipup1
+chmod 733 metang
+chmod 512 donphan
+chmod 062 porygon2
+chmod 335 makuhita
+chmod 444 lickitung
+chmod a=wx roserade
+
+cd ..
+chmod 751 lillipup1
+chmod 006 mantine2
+
+cd pichu9
+chmod 537 weedle
+chmod 660 bibarel
+chmod 711 ducklett
+chmod a=r kingdra
+chmod 520 vigoroth
+chmod 512 clamperl
+cd ..
+chmod 312 pichu9
+
+chmod 062 vanillite8
+chmod 004 weepinbell6

@@ -1,0 +1,32 @@
+cd lab0
+
+chmod u+w crawdaunt3
+chmod u+r crawdaunt3/shedinja
+cp -R crawdaunt3 crawdaunt3/shedinja/
+chmod u-w crawdaunt3
+chmod u-r crawdaunt3/shedinja
+
+chmod u+rwx vanillite8
+chmod u+r lillipup1/roserade
+cp vanillite8 lillipup1/roserade/
+chmod u+rwx vanillite8
+chmod u-r lillipup1/roserade
+
+chmod u+w crawdaunt3
+chmod u+rwx vanillite8
+touch crawdaunt3/blazinvanillite
+cat vanillite8 > crawdaunt3/blazinvanillite
+chmod u-w crawdaunt3
+chmod u-rwx vanillite8
+
+ln -s lillipup1 Copy_6
+
+chmod u+r pichu9
+chmod u+wx lillipup1/lickitung
+touch mantine2_83
+cat lillipup1/lickitung pichu9/vigoroth > mantine2_83
+chmod u-r pichu9
+chmod u-wx lillipup1/lickitung
+
+ln weepinbell6 lillipup1/lickitungweepinbell
+ln -s weepinbell6 pichu9/vigrothweepinbell

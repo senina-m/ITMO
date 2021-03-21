@@ -1,0 +1,15 @@
+cd lab0
+wc -m $(ls *l */*l */*/*l 2>/dev/null) 2>/dev/null|sort -n
+
+chmod u+r pichu9
+ls -l pichu9/ | sort -rk9
+
+cat -n $(ls -R p* */p* */*/*p 2> /dev/null |sort -k9) 2> /dev/null
+
+touch /tmp/e
+ls -R pichu9/ 2> /tmp/e |sort -r
+chmod u-r pichu9
+
+ls -lR 2> /dev/null | /usr/xpg4/bin/grep -E 'a$' | head -2
+
+ls -Rl 2> /tmp/errors| grep -v '^\.'| grep -v '^d'| grep -v '^l'| grep -v '^t'| head -2| sort -k2 
