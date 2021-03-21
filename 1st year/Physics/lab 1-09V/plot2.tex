@@ -1,0 +1,27 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+График 2. Зависимость квадрата периода от крвдрата рассторяния по таблице 3.
+
+\begin{tikzpicture}
+\begin{axis}[
+    width = 12 cm,
+    height = 10 cm,
+	title =  $T^2(a^2)$,
+	xlabel = {$a^2, м^2$},
+	ylabel = {$T^2, с^2$},
+	xmin = 0,
+	xmax = 0.1,
+	ymin = 5,
+	ymax = 40,
+	xtick={0,0.005,...,0.025},
+	xmajorgrids=true,
+    ymajorgrids=true
+]
+% \addplot[blue] {899.68 * x + 14.93};
+\addplot[blue] {x + 1};
+\addplot[color=red, mark=*, only marks] coordinates { (0.0004, 15.358) (0.0036, 18.148) (0.0100, 23.824) (0.0196, 32.618)};
+% \addplot[color=red, mark=*, only marks] coordinates { (1, 1) (2,2) (2.5, 2.5)};
+\end{axis}
+\end{tikzpicture}
+\end{document}
