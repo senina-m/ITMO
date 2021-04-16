@@ -1,0 +1,30 @@
+          ORG     0x61	
+CUR:      WORD    $STRING
+STOPW:    WORD    000A
+LITTLE:   WORD    0000
+BIG:      WORD    0000
+START:    CLA 
+          LD      (CUR)+
+          ST      LITTLE
+          SWAB
+          ST      BIG
+S1:       IN      3
+          AND     #0x40	
+          BEQ     S1
+          LD      LITTLE
+          SXTB
+          CMP     STOPW
+          BEQ     FINISH
+          OUT     2
+S2:       IN      3
+          AND     #0x40	
+          BE      S2	
+          LD      BIG
+          CMP     STOPW
+          BEQ     FINISH
+          OUT     2
+          JUMP    START
+FINISH: HLT
+
+ORG 0x590
+STRING: WORD 0x6665, 0x6867, 0x7069, 0x000A
