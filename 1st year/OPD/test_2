@@ -22,89 +22,89 @@
 
 Моя программа:
 
-ORG		   0x612
-CUR:	   WORD	$ARR
-I:		   WORD	4		    ;всего 4 чётных строки
-J:		   WORD	6		    ;в каждой строке 6 чётных индекса
-ALL:	   WORD	77 	    ;всего 77 элементов в массиве
-MAX:	   WORD	0
-R1:		   WORD	0		    ;первая ячейка резульатата - старшее слово
-R2:		   WORD	0		    ;вторая ячейка резульатата - старшее слово
-CK12:	   WORD	0x1000	;маска для 12ого бита
-CK13:	   WORD	0x2000	;маска для 13ого бита
-EL:		   WORD	0
+ORG	0x612
+CUR:	WORD	$ARR
+I:	WORD	4	;всего 4 чётных строки
+J:	WORD	6	;в каждой строке 6 чётных индекса
+ALL:	WORD	77;всего 77 элементов в массиве
+MAX:	WORD	0
+R1:	WORD	0	;первая ячейка резульатата - старшее слово
+R2:	WORD	0	;вторая	ячейка резульатата - старшее слово
+CK12:	WORD	0x1000	;маска для 12ого бита
+CK13:	WORD	0x2000	;маска для 13ого бита
+EL:	WORD	0
 
-LOOPI:	 CLA
-LOOPJ:	 LD		(CUR)
-		     CALL	COUNT
-		     ST		(CUR)
-		     OR		(CUR)+	;увеличиваем на два указатель эклемента
-		     OR		(CUR)+
-		     LOOP	J		    ;цикл по столбцам
-		     BR		LOOPJ
-		     LD		#0x4	  ;обновление количества циклов в строке перед новым цмклом
-		     ST		J
-		     LD		$CUR
-		     ADD	#0xC	  ;переход к следующему чётному через одну строчку на 12 вперёд
-		     ST		CUR
-		     LOOP	I		    ;цикл по строкам
-		     BR		LOOPI
-		     NOP
-		     LD		$ARR
-		     ST		CUR
-		     LD		ARR
-		     CALL	ROUND
-		     ST		MAX		  ;загружаем максимум = первому элементу
-LALL:    LD		(CUR)+
-		     CALL	ROUND	  ;расширение знака 12ти битных чисел
-		     CMP	MAX
-	     	 BGE	UD
-		     BR		NLOOP
-UD:		   ST		MAX
-NLOOP:	 LOOP	ALL		  ;цикл по всем элементам
-		     BR		LALL
-		     LD		MAX
-		     AND	CK12	  ;проверка знака 12битного числа 
-		     BEQ	PLUS
-MINUS:	 LD		#0xFF
-		     ST		R1
-PLUS:	   LD		MAX
-		     ST		R2
-		     HLT
-		
-		     ORG	0x5F2
-PR:		   WORD	0
-FALV:	   WORD	052B
-ADDV:	   WORD	035F
-COUNT:	 ST		PR
-		     ASL
-		     ADD	ADDV
-		     ST		EL
-		     AND	CK12 
-		     BEQ	ZERO	  ;если 12ый бит == 0
-ONE:	   LD		EL		  ;если 12ый бит == 1
-		     AND	CK13	  ;проверяем, что 13ый не равен - иначе переполнение
-		     BEQ	OK
-		     BR		FALL
-ZERO:    LD		PR		  ;если 12ый бит == 0
-		     AND	CK12	  ;проверяем что в начальном числе тоже был 0
-		     BEQ	OK
-FALL:	   LD		FALV	  ;если переполнение
-		     BR		EXIT
-OK:		   LD		EL		  ;нет переполнение
-EXIT:	   RET
+LOOPI:	CLA
+LOOPJ:	LD	(CUR)
+	CALL	COUNT
+	ST	(CUR)
+	OR	(CUR)+	;увеличиваем на два указатель эклемента
+	OR	(CUR)+
+	LOOP	J	;цикл по столбцам
+	BR	LOOPJ
+	LD	#0x4	;обновление количества циклов в строке перед новым цмклом
+	ST	J
+	LD	$CUR
+	ADD	#0xC	;переход к следующему чётному через одну строчку на 12 вперёд
+	ST	CUR
+	LOOP	I	;цикл по строкам
+	BR	LOOPI
+	NOP
+	LD	$ARR
+	ST	CUR
+	LD	ARR
+	CALL	ROUND
+	ST	MAX	;загружаем	максимум = первому элементу
+LALL:	LD	(CUR)+
+	CALL	ROUND	;расширение знака 12ти битных чисел
+	CMP	MAX
+	BGE	UD
+	BR	NLOOP
+UD:	ST	MAX
+NLOOP:	LOOP	ALL	;цикл по всем элементам
+	BR	LALL
+	LD	MAX
+	AND	CK12	;проверка знака 12битного числа
+	BEQ	PLUS
+MINUS:	LD	#0xFF
+	ST	R1
+PLUS:	LD	MAX
+	ST	R2
+	HLT
+	
+	ORG	0x5F2
+PR:	WORD	0
+FALV:	WORD	052B
+ADDV:	WORD	035F
+COUNT:	ST	PR
+	ASL
+	ADD	ADDV
+	ST	EL
+	AND	CK12	
+	BEQ	ZERO	;если 12ый бит == 0
+ONE:	LD	EL	;если 12ый бит == 1
+	AND	CK13	;проверяем, что 13ый не равен - иначе переполнение
+	BEQ	OK
+	BR	FALL
+ZERO:	LD	PR	;если 12ый бит == 0
+	AND	CK12	;проверяем, что в начальном числе тоже был 0
+	BEQ	OK
+FALL:	LD	FALV	;если переполнение
+	BR	EXIT
+OK:	LD	EL	;нет переполнения
+EXIT:	RET
 
 
-		    ORG		0x5E6
-MASK:		  WORD	0xE000	;магия - если писать E000 - не компилируется
-ROUND:	ST		EL		  ;метод чтобы расширять знак у 12битных чисел,
-		    AND		CK12	  ;чтобы корректно их сравнивать
-	    	BEQ		LDEL
-		    LD		EL
-		    OR		MASK
-		    BR		RETURN
-LDEL:	  LD		EL
+	ORG	0x5E6
+MASK:	WORD	0xE000	;магия - если писать E000 - не компилируется
+ROUND:	ST	EL	;метод чтобы расширять знак у 12битных чисел,
+	AND	CK12	;чтобы корректно их сравнивать
+	BEQ	LDEL
+	LD	EL
+	OR	MASK
+	BR	RETURN
+LDEL:	LD	EL
 RETURN:	RET
 
-		ORG		0x664	      ;масссив: 11 столбцов 7 строк
-ARR:	WORD	0xF123, 0x124, 0x125, 0x126, 0x127, 0x128, 0x129, 0x130, 0x131, 0x133, 0x134, 0x135 ...
+	ORG	0x664	;масссив: 11 столбцов 7 строк
+ARR:	WORD	0xF123,	0x124,	0x125,	0x126,	0x127,	0x128,	0x129,	0x130,	0x131,	0x133,	0x134,	0x135	...
