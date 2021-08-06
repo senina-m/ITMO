@@ -1,9 +1,3 @@
-<html>
-<head>
-    <title>Lab 1</title>
-    <link rel="stylesheet" href="../styles/form_page.css">
-</head>
-<body>
 <?php
 session_start();
 $attempts = (isset ($_SESSION["attempts"])) ? ($_SESSION["attempts"]) : array();
@@ -20,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //        print_r($attempts);
 
 
-        echo "<br><br>Last attempt: X:".$current_attempt->get_coordinates()->get_x()."\n Y:".$current_attempt->get_coordinates()->
-            get_y()."\n R:".$current_attempt->get_coordinates()->get_r()."\n result:".$current_attempt->
-            get_result()."\n time:".$current_attempt->get_time()."\n scriptTime:".$current_attempt->get_script_time()."ms";
+//        echo "<br><br>Last attempt: X:".$current_attempt->get_coordinates()->get_x()."\n Y:".$current_attempt->get_coordinates()->
+//            get_y()."\n R:".$current_attempt->get_coordinates()->get_r()."\n result:".$current_attempt->
+//            get_result()."\n time:".$current_attempt->get_time()."\n scriptTime:".$current_attempt->get_script_time()."ms";
     } catch (Exception $e) {
         echo json_encode($e->getMessage());
 //        echo $e->getMessage();
@@ -146,5 +140,3 @@ class Attempt
     }
 }
 ?>
-</body>
-</html>
