@@ -1,113 +1,63 @@
 <!DOCTYPE HTML>
 <html>
- <head>
-  <meta charset="UTF-8">
-  <title>Area counter - lab 1</title>
-  <link rel="stylesheet" href="styles/form_page.css">
- </head>
- <body>
- <div id="heat"> Senina Mariya Michailovna P3212<br>Variant: 12019<br></div>
- <div id="mainPart">
-	<h1>Check if coordinates fit the area</h1>
-	<img src="images/web_lab1.jpg"> <br>
-	<form action="scripts/fill_form.php" class='formWithValidation' method="post">
-			<fieldset class="shadowbox">
-				<legend>Enter coordinates:</legend>
-				<div>
-					<div>
-						<label>X:</label>
-					</div>
-					<div>
-						<select id="x" name="x" class='x field'>
-						  <option value="-4">-4</option>
-						  <option value="-3">-3</option>
-						  <option value="-2">-2</option>
-						  <option value="-1">-1</option>
-						  <option value="0">0</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="4">4</option>
-					    </select>
-					</div>
-				</div>
-				<div>
-					<div>
-						<label>Y:</label>
-					</div>
-					<div>
-						<input type="text" class='y field' id="y" name="y" value="1">
-					</div>
-				</div>
-				<div>
-					<div>
-						<label>R:</label>
-					</div>
-					<div>
-						<input type="text" class='r field' id="r" name="r" value="2">
-					</div>
-				</div>
-				<div>
-					<input type="submit" class='validateBtn' value="Submit">
-				</div>
-			</fieldset>
-	</form>
-	</div>
-	<script>
-		var form = document.querySelector('.formWithValidation')
-		
-		var fields = form.querySelectorAll('.field')
-		var printError = function (errorName, errorClass, errorMessage, element) {
-				console.log(errorName, element)
-				var error = document.createElement('div')
-				error.className = errorClass
-				error.innerHTML = errorMessage
-				element.parentElement.insertBefore(error, element)
-			}
-		var removeErrors = function () {
-			var errors = form.querySelectorAll('.error')
-
-			for (var i = 0; i < errors.length; i++) {
-				errors[i].remove()
-			}
-		}
-		
-		form.addEventListener('submit', function (event) {
-			event.preventDefault()
-			
-			console.log('clicked on validate')
-			console.log('y: ', y.value)
-			console.log('r: ', r.value)
-			
-			removeErrors()
-			
-			let anyErrors = 0
-			
-			for (var i = 0; i < fields.length; i++) {
-			  if (!fields[i].value) {
-				  printError('field is blank', 'blankField error', 'Cannot be blank', fields[i])
-				  anyErrors++
-			}
-			}
-			
-			if (y.value == "" || y.value > 3 || y.value < -5 || isNaN(Number(y.value))){
-				printError('y is out of range', 'y error', 'Has to be number from -5 to 3', y)
-				anyErrors++
-			}
-			if (r.value == "" || r.value > 5 || r.value < 2 || isNaN(Number(r.value))) {
-				printError('r is out of range', 'r error', 'Has to be number from 2 to 5', r)
-				anyErrors++
-			}
-			
-			if(anyErrors == 0){
-				form.submit()
-			}
-		})			
-	</script>	
-<ol id="notes"> 
-	<li> Тег u нужен чтобы <u>подчеркнуть</u> слово </li>
-	<li> Тег i нужен чтобы <i>написать курсивом</i></li>
-	<li> Тег b нужен чтобы <b>сделать жирным</b></li>
+<head>
+    <meta charset="UTF-8">
+    <title>Area counter - lab 1</title>
+    <link rel="stylesheet" href="styles/form_page.css">
+</head>
+<body>
+<div id="heat"> Senina Mariya Michailovna P3212<br>Variant: 12019<br></div>
+<div id="mainPart">
+    <h1>Check if coordinates fit the area</h1>
+    <img src="images/web_lab1.jpg"> <br>
+    <form action="scripts/fill_form.php" class='formWithValidation' method="post">
+        <fieldset class="shadowbox">
+            <legend>Enter coordinates:</legend>
+            <div>
+                <div>
+                    <label>X:</label>
+                </div>
+                <div>
+                    <select id="x" name="x" class='x field'>
+                        <option value="-4">-4</option>
+                        <option value="-3">-3</option>
+                        <option value="-2">-2</option>
+                        <option value="-1">-1</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label>Y:</label>
+                </div>
+                <div>
+                    <input type="text" class='y field' id="y" name="y" value="1">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label>R:</label>
+                </div>
+                <div>
+                    <input type="text" class='r field' id="r" name="r" value="2">
+                </div>
+            </div>
+            <div>
+                <input type="submit" class='validateBtn' value="Submit">
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript" src="./js/validate.js"></script>
+<ol id="notes">
+    <li> Тег u нужен чтобы <u>подчеркнуть</u> слово</li>
+    <li> Тег i нужен чтобы <i>написать курсивом</i></li>
+    <li> Тег b нужен чтобы <b>сделать жирным</b></li>
 </ol>
- </body>
+</body>
 </html>
